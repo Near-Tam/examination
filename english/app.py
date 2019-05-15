@@ -64,6 +64,7 @@ def question(group, time=0):
     else:
         time += 1
         if time < TIMES:
+            log.error('x')
             question(group, time)
         else:
             log.error('x {0}, {1}, {2}'.format(group[0], group[1], group[2]))
