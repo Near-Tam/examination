@@ -60,21 +60,32 @@ def question(group, time=0):
     is_right = judge(group, answer, give_index)
     if is_right:
         log.info('o {0}, {1}, {2}'.format(group[0], group[1], group[2]))
+        return True
     else:
         time += 1
         if time < TIMES:
             question(group, time)
         else:
             log.error('x {0}, {1}, {2}'.format(group[0], group[1], group[2]))
+        return False
 
 def testing(groups):
+    false_set = list()
     for group in groups:
-        question(group)
+        is_pass = question(group)
+        if is_pass is not True:
+            false_set.append(group)
+    if len(false_set) == 0:
+        return None
+    else:
+        random.shuffle(false_set)
+        testing(false_set)
 
 def run():
     content = load_yml()
     groups = get_groups(content)
     testing(groups)
+    log.info('You are finish the task.')
     
 
 if __name__ == '__main__':
