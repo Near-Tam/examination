@@ -2,6 +2,7 @@
 import sys
 import yaml
 import random
+import readline
 import argparse
 
 reload(sys)
