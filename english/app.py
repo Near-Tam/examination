@@ -16,12 +16,13 @@ WORD_CN = 2
 log = logger(__name__).get_logger()
 
 def load_yml(yml_file=None):
-    if yml_file == None:
+    if yml_file is None:
         yml_file = FLAGS.yml_file
     # with open(yml_file, 'r', encoding='utf-8') as f:
     with open(yml_file, 'r') as f:
         res = yaml.load(f)
     return res
+
 
 def get_groups(content):
     groups = list()
@@ -35,6 +36,7 @@ def get_groups(content):
     random.shuffle(groups)
     return groups
 
+
 def get_en_or_cn():
     index = random.randint(0, 1)
     if index == 1:
@@ -42,6 +44,7 @@ def get_en_or_cn():
     # Force index
     index = WORD_CN
     return index
+
 
 def judge(group, answer, give_index):
     if give_index == WORD_CN:
@@ -52,6 +55,7 @@ def judge(group, answer, give_index):
     else:
         # using jaccard sim to judge.
         return None
+
 
 def question(group, time=0):
     give_index = get_en_or_cn()
@@ -70,6 +74,7 @@ def question(group, time=0):
             log.error('x {0}, {1}, {2}'.format(group[0], group[1], group[2]))
         return False
 
+
 def testing(groups):
     false_set = list()
     for group in groups:
@@ -81,6 +86,7 @@ def testing(groups):
     else:
         random.shuffle(false_set)
         testing(false_set)
+
 
 def run():
     content = load_yml()
