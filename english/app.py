@@ -9,6 +9,7 @@ sys.setdefaultencoding('utf-8')
 
 from log import logger
 
+UNK = '<UNK>'
 FLAGS = None
 TIMES = 3
 WORD_EN = 0
@@ -57,22 +58,33 @@ def judge(group, answer, give_index):
         return None
 
 
+def is_unk(answer):
+    if answer == UNK:
+        return True
+    else:
+        return False
+
+
 def question(group, time=0):
     give_index = get_en_or_cn()
     log.info('Question: {0}'.format(group[give_index]))
     answer = raw_input('Answer: ')
-    is_right = judge(group, answer, give_index)
-    if is_right:
-        log.info('o {0}, {1}, {2}'.format(group[0], group[1], group[2]))
-        return True
-    else:
-        time += 1
-        if time < TIMES:
-            log.error('x')
-            question(group, time)
-        else:
-            log.error('x {0}, {1}, {2}'.format(group[0], group[1], group[2]))
+    if is_unk(answer):
+        log.warn('* {0}, {1}, {2}'.format(group[0], group[1], group[2]))
         return False
+    else:
+        is_right = judge(group, answer, give_index)
+        if is_right:
+            log.info('o {0}, {1}, {2}'.format(group[0], group[1], group[2]))
+            return True
+        else:
+            time += 1
+            if time < TIMES:
+                log.error('x')
+                question(group, time)
+            else:
+                log.error('x {0}, {1}, {2}'.format(group[0], group[1], group[2]))
+            return False
 
 
 def testing(groups):
