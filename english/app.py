@@ -106,13 +106,11 @@ if __name__ == '__main__':
         '--is_all',
         type=bool,
         default=False,
-        help='Select whether all words are loaded for testing.'
-    )
+        help='Select whether all words are loaded for testing.')
     parser.add_argument(
         '--lessons',
         type=str,
         default='lesson1',
-        help='Which lessons would you want.'
-    )
+        help='Which lessons would you want.')
     FLAGS, unparsed = parser.parse_known_args()
     run()
