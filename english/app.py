@@ -68,7 +68,7 @@ def is_unk(answer):
 
 def question(group, time=0):
     give_index = get_en_or_cn()
-    log.info('Question: {0}'.format(group[give_index]))
+    log.info('Question: {0}, {1}'.format(group[give_index], group[1]))
     answer = raw_input('Answer: ')
     if is_unk(answer):
         log.warn('* {0}, {1}, {2}'.format(group[0], group[1], group[2]))
