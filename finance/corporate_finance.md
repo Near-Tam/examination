@@ -717,11 +717,11 @@
 
     IRR与NPV的冲突情况(IRR失效, 应使用NPV):
       1.延迟投资(收益发生在成本之前, NPV是折现率的增函数)
-      !()[irr_increase.png]
+      ![](irr_increase.png)
       2.IRR不存在
-      !()[irr_none.png]
+      ![](irr_none.png)
       3.多重IRR(非常规现金流量: 项目现金流量符号改变两次以上)
-      !()[irr_multi.png]
+      ![](irr_multi.png)
 
     总结:
       IRR不仅衡量投资的平均回报率, 还能衡量NPV对资本成本估计误差的敏感性
@@ -751,7 +751,7 @@
   - 互斥项目
     def: 多个项目中只能选择其中一个, 选择是互斥的
     现象: 需要把多个项目的IRR曲线分别画出进行具体判断
-    !()[irr_compare.png]
+    ![](irr_compare.png)
 
   - 延迟投资(投资 or 融资)
     投资: 收益发生在成本后(与NPV一致)
